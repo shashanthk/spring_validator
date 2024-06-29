@@ -4,7 +4,7 @@ import jakarta.validation.ConstraintValidator;
 import jakarta.validation.ConstraintValidatorContext;
 import org.springframework.beans.factory.annotation.Autowired;
 
-public class AlphaNumericOnlyValidator implements ConstraintValidator<AlphaNumericOnly, String> {
+public class FilePathOnlyValidator implements ConstraintValidator<FilePathOnly, String> {
 
     @Autowired
     private ValidatorProperties properties;
@@ -12,7 +12,7 @@ public class AlphaNumericOnlyValidator implements ConstraintValidator<AlphaNumer
     private String customRegex;
 
     @Override
-    public void initialize(AlphaNumericOnly constraintAnnotation) {
+    public void initialize(FilePathOnly constraintAnnotation) {
         ConstraintValidator.super.initialize(constraintAnnotation);
         this.customRegex = constraintAnnotation.regex();
     }
@@ -20,7 +20,7 @@ public class AlphaNumericOnlyValidator implements ConstraintValidator<AlphaNumer
     @Override
     public boolean isValid(String str, ConstraintValidatorContext constraintValidatorContext) {
         // if input is NULL, consider it as valid input
-        // we should handle this in the logical level instead of letting an annotation decide
+        // we should handle this in the logical level instead of letting annotation decide
         // if custom regex is defined while annotating a class member, consider it in the first priority
         // else fall back to the regex defined in the validator.properties file
 
@@ -33,9 +33,10 @@ public class AlphaNumericOnlyValidator implements ConstraintValidator<AlphaNumer
             return str.matches(customRegex);
         }
 
+
         // global regex
-        if (properties.getAlphaNumericRegex() != null && !properties.getAlphaNumericRegex().isEmpty()) {
-            return str.matches(properties.getAlphaNumericRegex());
+        if (properties.getFilePathRegex() != null && !properties.getFilePathRegex().isEmpty()) {
+            return str.matches(properties.getFilePathRegex());
         }
 
         return true;

@@ -20,7 +20,7 @@ public class DateTimeOnlyValidator implements ConstraintValidator<DateTimeOnly, 
     @Override
     public boolean isValid(String str, ConstraintValidatorContext constraintValidatorContext) {
 
-        if (str == null) {
+        if (str == null || str.trim().isEmpty()) {
             return true; // null values are valid
         }
 

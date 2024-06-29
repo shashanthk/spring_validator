@@ -3,11 +3,9 @@ package com.shashanth.spring.validator.validators;
 import jakarta.validation.ConstraintValidator;
 import jakarta.validation.ConstraintValidatorContext;
 
-import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
-import java.util.Locale;
 
 public class TimeOnlyValidator implements ConstraintValidator<TimeOnly, String> {
 
@@ -22,7 +20,7 @@ public class TimeOnlyValidator implements ConstraintValidator<TimeOnly, String> 
     @Override
     public boolean isValid(String str, ConstraintValidatorContext constraintValidatorContext) {
 
-        if (str == null) {
+        if (str == null || str.trim().isEmpty()) {
             return true; // null values are valid
         }
 

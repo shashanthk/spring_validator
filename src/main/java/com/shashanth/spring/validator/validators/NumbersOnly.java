@@ -7,15 +7,13 @@ import jakarta.validation.constraints.NotNull;
 import java.lang.annotation.*;
 
 @Documented
-@Constraint(validatedBy = AlphabetsOnlyValidator.class)
+@Constraint(validatedBy = NumbersOnlyValidator.class)
 @Target({ElementType.METHOD, ElementType.FIELD})
 @Retention(RetentionPolicy.RUNTIME)
-public @interface AlphabetsOnly {
+public @interface NumbersOnly {
 
     @NotNull
-    String message() default "Only alphabets allowed";
-
-    String regex() default ""; // optional regex pattern
+    String message() default "Only numbers allowed";
 
     Class<?>[] groups() default {};
 

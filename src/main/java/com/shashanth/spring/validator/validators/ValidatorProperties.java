@@ -16,5 +16,7 @@ public class ValidatorProperties {
     private String numericRegex;
     @Value("${email.regexp}")
     private String emailRegex;
+    @Value("${filepath.regexp}")
+    private String filePathRegex;
 
 }

@@ -2,7 +2,6 @@ package com.shashanth.spring.validator.validators;
 
 import jakarta.validation.ConstraintValidator;
 import jakarta.validation.ConstraintValidatorContext;
-import org.springframework.beans.factory.annotation.Autowired;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
@@ -21,7 +20,7 @@ public class DateOnlyValidator implements ConstraintValidator<DateOnly, String> 
     @Override
     public boolean isValid(String str, ConstraintValidatorContext constraintValidatorContext) {
 
-        if (str == null) {
+        if (str == null || str.trim().isEmpty()) {
             return true; // null values are valid
         }
 

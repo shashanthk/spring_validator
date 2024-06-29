@@ -23,6 +23,21 @@ public class EmailOnlyValidator implements ConstraintValidator<EmailOnly, String
         // we should handle this in the logical level instead of letting an annotation decide
         // if custom regex is defined while annotating a class member, consider it in the first priority
         // else fall back to the regex defined in the validator.properties file
-        return (str == null || (customRegex != null && !customRegex.isEmpty() ? str.matches(customRegex) : (str.matches(properties.getEmailRegex()))));
+
+        if (str == null || str.trim().isEmpty()) {
+            return true;
+        }
+
+        // custom regex
+        if (customRegex != null && !customRegex.isEmpty()) {
+            return str.matches(customRegex);
+        }
+
+        // global regex
+        if (properties.getEmailRegex() != null && !properties.getEmailRegex().isEmpty()) {
+            return str.matches(properties.getEmailRegex());
+        }
+
+        return true;
     }
 }

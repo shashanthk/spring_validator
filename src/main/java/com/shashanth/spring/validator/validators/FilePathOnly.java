@@ -7,13 +7,13 @@ import jakarta.validation.constraints.NotNull;
 import java.lang.annotation.*;
 
 @Documented
-@Constraint(validatedBy = AlphabetsOnlyValidator.class)
+@Constraint(validatedBy = FilePathOnlyValidator.class)
 @Target({ElementType.METHOD, ElementType.FIELD})
 @Retention(RetentionPolicy.RUNTIME)
-public @interface AlphabetsOnly {
+public @interface FilePathOnly {
 
     @NotNull
-    String message() default "Only alphabets allowed";
+    String message() default "Invalid file path";
 
     String regex() default ""; // optional regex pattern
 
